@@ -1,10 +1,34 @@
 const express = require("express");
+const dotenv = require("dotenv");
+const morgan = require("morgan");
+const bodyparser = require("body-parser");
+const path = require("path");
 
 const App = express();
 
+dotenv.config({path:'config.env'});
+
+//Log requests on console
+App.use(morgan('tiny'));
+
+//Pass request to body-parser
+App.use(bodyparser.urlencoded({extended:true}));
+
+//Set view engine
+App.set("view engine", "ejs");
+
+//Load assets (using middleware)
+App.use('/css', express.static(path.resolve(__dirname, "assets/css")));
+App.use('/img', express.static(path.resolve(__dirname, "assets/img")));
+App.use('/js', express.static(path.resolve(__dirname, "assets/js")));
+
+
 App.get('/', (req,res) => {
-    res.send('CRUD application')
+    res.render('index');
 })
 
-const PORT = 3000;
+
+
+const PORT = process.env.PORT || 3000;
+
 App.listen(PORT, () => {console.log(`Server is running on port ${PORT}`)});
