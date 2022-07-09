@@ -23,10 +23,8 @@ App.use('/img', express.static(path.resolve(__dirname, "assets/img")));
 App.use('/js', express.static(path.resolve(__dirname, "assets/js")));
 
 
-App.get('/', (req,res) => {
-    res.render('index');
-})
-
+//Load Routers
+App.use('/'.require('./server/routes/router'));
 
 
 const PORT = process.env.PORT || 3000;
