@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const bodyparser = require("body-parser");
 const path = require("path");
 
+const connectDB = require('./server/database/connection');
+
 const App = express();
 
 dotenv.config({path:'config.env'});
@@ -24,7 +26,7 @@ App.use('/js', express.static(path.resolve(__dirname, "assets/js")));
 
 
 //Load Routers
-App.use('/'.require('./server/routes/router'));
+App.use('/',require('./server/routes/router'));
 
 
 const PORT = process.env.PORT || 3000;
