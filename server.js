@@ -11,6 +11,7 @@ const App = express();
 dotenv.config({path:'config.env'});
 
 
+
 //Log requests on console
 App.use(morgan('tiny'));
 

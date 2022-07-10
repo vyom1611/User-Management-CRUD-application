@@ -19,7 +19,7 @@ exports.create = (req,res) => {
     //Saving user data to database
     user
         .save(user)  //saving to MongoDB
-        .then(data => res.redirect("/add-user"))
+        .then(data => {res.redirect("/add-user")})
         .catch(err => res.status(500, {message: err.message || "Some error occurred while creating user"}))
 
 }
@@ -40,18 +40,17 @@ exports.find = (req,res) => {
                     res.send(data)
                 }
             })
-            .catch(err => res.statuss(500).send({message: "Error retrieving user with id"}))
+            .catch(err => res.status(500).send({message: "Error retrieving user with id"}))
     } else {
         userDB.find()
-            .then(user => res.send(user))
+            .then(user => {res.send(user)})
             .catch(err => res.send(500).send({message: "Error while finding user information" || err.message}))
 }}
 
 // Update a new user by an id (API)
 exports.update = (req,res) => {
     if(!req.body){
-        res.status(400).send({message: 'Content is empty!'});
-        return;
+        return res.status(400).send({message: 'Content is empty!'});
     }
 
     const id = req.params.id;
@@ -70,16 +69,13 @@ exports.update = (req,res) => {
 
 // Delete a user with user id (API)
 exports.delete = (req,res) => {
-    if(!req.body){
-        res.status(400).send({message: 'Content is empty!'});
-        return;
-    }
 
     const id = req.params.id;
-    userDB.findByIdAndDelete(id, req.body)
+
+    userDB.findByIdAndDelete(id)
         .then(data => { 
             if (!data) {
-            res.status(400).send({ message: "User ID not found or invalid" })
+            res.status(404).send({ message: "User ID not found or invalid" })
         } else {
             res.send({message: "User deleted succesfully"})
         }
