@@ -10,11 +10,9 @@ const connectDB = async () => {
         const connection = await mongoose.connect(process.env.MONGO_URI, {
             // Stopping unwanted warnings in console
             useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false,
-            useCreateIndex: true
+            useUnifiedTopology: true
         })
-        console.log(`MongoDB connected on ${con.connection.host}`)
+        console.log(`MongoDB connected on this port`)
     } catch (err) {
         console.log(err);
         process.exit(1);
