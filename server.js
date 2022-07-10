@@ -13,6 +13,9 @@ dotenv.config({path:'config.env'});
 //Log requests on console
 App.use(morgan('tiny'));
 
+//MongoDB connection
+connectDB();
+
 //Pass request to body-parser
 App.use(bodyparser.urlencoded({extended:true}));
 
@@ -26,7 +29,7 @@ App.use('/js', express.static(path.resolve(__dirname, "assets/js")));
 
 
 //Load Routers
-App.use('/',require('./server/routes/router'));
+App.use('/', require('./server/routes/router'));
 
 
 const PORT = process.env.PORT || 3000;
