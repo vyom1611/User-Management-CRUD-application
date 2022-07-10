@@ -3,6 +3,7 @@
     <%- include('include/_header') %>
 <!-- /include header -->
 
+
     <!-- Main Site -->
     <main id="site-main">
         <div class="container">
@@ -11,6 +12,7 @@
                     <span class="text-gradient">New User <i class="fas fa-user"></i></span>
                 </a>
             </div>
+
             <!-- form handling -->
             <form action="/" method="POST">
                 <table class="table">
@@ -25,31 +27,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Martin</td>
-                            <td>cre343@gmail.com</td>
-                            <td>Male</td>
-                            <td>Active</td>
-                            <td>
-                                <a href="/update-user" class="btn border-shadow update">
-                                    <span class="text-gradient">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </span>
-                                </a>
-                                <a class="btn border-shadow delete">
-                                    <span class="text-gradient">
-                                        <i class="fas fa-times"></i>
-                                    </span>
-                                </a>
-                            </td>
-                        </tr>
+                        <%- include('include/_show') %>
                     </tbody>
                 </table>
             </form>
         </div>
     </main>
 <!-- /Main Site -->
+
 
 <!-- include footer -->
 <%- include('include/_footer') %>

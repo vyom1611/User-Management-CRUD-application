@@ -19,17 +19,33 @@ exports.create = (req,res) => {
     //Saving user data to database
     user
         .save(user)  //saving to MongoDB
-        .then(data => res.send(data))
+        .then(data => res.redirect("/add-user"))
         .catch(err => res.status(500, {message: err.message || "Some error occurred while creating user"}))
 
 }
 
 // Retrieve all users and return a single User (API)
 exports.find = (req,res) => {
-    userDB.find()
-        .then(user => res.send(user))
-        .catch(err => res.send(500).send({message: "Error while finding user information" || err.message}))
-}
+
+    //If only one id has been passed, then only a single user is retrieved
+    //Else find all users
+    if (req.query.id) {
+        const id = req.query.id
+        userDB.findById(id)
+            .then(data => {
+                //Accounting for null data of an id, i.e the id does not exist
+                if (!data) {
+                    res.status(404).send({message: "User id not found"})
+                } else {
+                    res.send(data)
+                }
+            })
+            .catch(err => res.statuss(500).send({message: "Error retrieving user with id"}))
+    } else {
+        userDB.find()
+            .then(user => res.send(user))
+            .catch(err => res.send(500).send({message: "Error while finding user information" || err.message}))
+}}
 
 // Update a new user by an id (API)
 exports.update = (req,res) => {
