@@ -54,10 +54,10 @@ exports.update = (req,res) => {
     }
 
     const id = req.params.id;
-    userDB.findByIdAndUpdate(id, req.body)
+    userDB.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => { 
             if (!data) {
-            res.status(400).send({ message: "User ID not found or invalid" })
+            res.status(404).send({ message: "User ID not found or invalid" })
         } else {
             res.send(data)
         }

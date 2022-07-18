@@ -59,14 +59,14 @@ a {
 }
 
 .text-gradient{
-    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    background: linear-gradient(to right, #6ccfe0, #66a4e2);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 #header nav{
-    background-color: #06d6a0;
+    background-color: #868eea;
     padding: 1em 0;
     width: 100%;
 }
@@ -104,7 +104,7 @@ table{
 }
 
 .table tr:hover{
-    background-color:#06d6a0 ;
+    background-color:#a3e5f9c0 ;
 }
 
 .table tr:hover td > a{
